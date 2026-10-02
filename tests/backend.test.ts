@@ -11,6 +11,8 @@
 // 9. Verify audit log is created after update
 // 10. Verify dashboard totals
 
+import fs from 'fs';
+import path from 'path';
 import { getDb, saveDatabase, resetToDemoData, createAuditLog } from '../server/db';
 import { getAllExpiryAlerts, getDashboardExpirySummary, calculateDaysRemaining } from '../server/expiry';
 import { validateSaudiIqamaNumber, convertEnglishPlateLettersToArabic } from '../server/common/saudi';
@@ -20,6 +22,11 @@ export async function runTestSuite(): Promise<{ total: number; passed: number; f
   console.log('\n======================================================');
   console.log(' Starting Saudi Fleet Management Backend Test Suite  ');
   console.log('======================================================\n');
+
+  const dbFilePath = path.join(process.cwd(), 'data', 'fleet_database.json');
+  const originalDbSnapshot = fs.existsSync(dbFilePath)
+    ? fs.readFileSync(dbFilePath, 'utf-8')
+    : null;
 
   // Ensure demo state initialized
   resetToDemoData();
@@ -165,6 +172,10 @@ export async function runTestSuite(): Promise<{ total: number; passed: number; f
 
   const passed = results.filter(r => r.status === 'PASSED').length;
   const failed = results.filter(r => r.status === 'FAILED').length;
+
+  if (originalDbSnapshot !== null) {
+    fs.writeFileSync(dbFilePath, originalDbSnapshot, 'utf-8');
+  }
 
   console.log('\n======================================================');
   console.log(` Test Suite Results: ${passed} Passed, ${failed} Failed `);
