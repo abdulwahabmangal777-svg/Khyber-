@@ -1,0 +1,12 @@
+{
+  "name": "Remix Fleet \u0026 Workforce Management System",
+  "description": "Enterprise Fleet & Workforce Management System with Khyber Core multi-channel gateway (Tel-Agent SIP Phone, Web PDF Reports, WhatsApp Dispatch), vehicle tracking, employee Iqama compliance, expiry alerts, maintenance, and fuel management.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

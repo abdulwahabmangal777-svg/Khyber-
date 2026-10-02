@@ -1,0 +1,6 @@
+# Google Mobile Ads / Google AdMob app-ads.txt
+# Package Name: com.khyber.logistics
+# AdMob Application ID: ca-app-pub-1036802722878553~9890117209
+# AdMob Ad Unit ID: ca-app-pub-1036802722878553/8632875853
+# Publisher ID: pub-1036802722878553
+google.com, pub-1036802722878553, DIRECT, f08c47fec0942fa0

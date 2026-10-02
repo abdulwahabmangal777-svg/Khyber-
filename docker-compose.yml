@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # Saudi Fleet API Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: saudi_fleet_backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgresql://fleet_user:fleet_secure_pass_2026@postgres:5432/saudi_fleet_db?schema=public
+      - JWT_SECRET=saudi_fleet_super_secure_jwt_secret_key_2026_x9910
+      - JWT_REFRESH_SECRET=saudi_fleet_refresh_token_secret_key_2026_r9910
+      - REDIS_URL=redis://redis:6379
+      - STORAGE_BUCKET=saudi-fleet-documents-prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - fleet_uploads:/app/data/uploads
+    networks:
+      - fleet_network
+
+  # PostgreSQL Relational Database (Saudi Localized)
+  postgres:
+    image: postgres:16-alpine
+    container_name: saudi_fleet_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fleet_user
+      POSTGRES_PASSWORD: fleet_secure_pass_2026
+      POSTGRES_DB: saudi_fleet_db
+      TZ: Asia/Riyadh
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fleet_user -d saudi_fleet_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fleet_network
+
+  # Redis In-Memory Cache & Background Job Broker
+  redis:
+    image: redis:7-alpine
+    container_name: saudi_fleet_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - fleet_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  fleet_uploads:
+    driver: local
+
+networks:
+  fleet_network:
+    driver: bridge

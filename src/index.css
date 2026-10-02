@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/* Luxury Motion Keyframes & Ambient Effects                                   */
+/* -------------------------------------------------------------------------- */
+@keyframes luxuryShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes luxuryGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 108, 53, 0.15), 0 0 30px rgba(0, 108, 53, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 108, 53, 0.3), 0 0 45px rgba(212, 175, 55, 0.15);
+  }
+}
+
+@keyframes luxuryGoldGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(217, 119, 6, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.4);
+  }
+}
+
+@keyframes luxuryFloatSoft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes plateLightSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+/* Luxury Utility Classes */
+.animate-luxury-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: luxuryShimmer 3.5s infinite linear;
+}
+
+.animate-luxury-glow {
+  animation: luxuryGlowPulse 4s ease-in-out infinite;
+}
+
+.animate-gold-glow {
+  animation: luxuryGoldGlow 3s ease-in-out infinite;
+}
+
+.animate-float-soft {
+  animation: luxuryFloatSoft 4s ease-in-out infinite;
+}
+
+.luxury-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+}
+
+.luxury-glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.luxury-glass-dark {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth custom scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dedicated Print & PDF Hard-Copy Export Stylesheet                          */
+/* -------------------------------------------------------------------------- */
+@media print {
+  /* Page configuration */
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+
+  /* Reset body and root container for crisp clean printing */
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Hide all interactive navigation, sidebars, headers, floating widgets, and utility buttons */
+  aside,
+  header,
+  nav,
+  .no-print,
+  button,
+  form,
+  input,
+  select,
+  textarea,
+  .recharts-legend-wrapper,
+  [role="dialog"] button,
+  .fixed.inset-0.bg-slate-900\/60,
+  .backdrop-blur-sm,
+  .backdrop-blur-xs {
+    /* Hide interactive elements by default in print */
+  }
+
+  /* Explicitly hide navigation, actions and chrome */
+  aside,
+  header,
+  nav,
+  .no-print,
+  button.no-print,
+  .print-hide {
+    display: none !important;
+  }
+
+  /* Hide floating overlay backdrops but keep modal contents visible */
+  .fixed.inset-0 {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Expand full container width without scrollbars */
+  #root,
+  main,
+  .flex-1,
+  .overflow-y-auto,
+  .overflow-hidden,
+  .overflow-x-auto {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    display: block !important;
+  }
+
+  /* Modal Container Print Formatting (360° Vehicle / Worker Profiles) */
+  [role="dialog"],
+  .fixed.inset-0 > div,
+  .max-w-5xl,
+  .max-w-4xl {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+    margin: 0 0 16px 0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Ensure card backgrounds and headers print with high-contrast color fidelity */
+  .bg-gradient-to-r,
+  .from-emerald-950,
+  .to-emerald-900,
+  .bg-\[\#006C35\],
+  .bg-emerald-900,
+  .bg-emerald-950 {
+    background: #006C35 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* High contrast table styling for hard copy */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  th {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid #cbd5e1 !important;
+    padding: 6px 8px !important;
+  }
+
+  td {
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 6px 8px !important;
+    font-size: 9pt !important;
+  }
+
+  /* Hide interactive tabs bar in modals during print, or show all tab content */
+  .print-hide-tabs {
+    display: none !important;
+  }
+
+  /* Clean up shadows & borders */
+  .shadow-xs,
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  .border,
+  .border-slate-200 {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Avoid orphaned page break splits */
+  .grid > div,
+  .rounded-2xl,
+  .rounded-xl {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Document links, QR codes and Saudi plates printing */
+  .print-break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Print header banner for branding */
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* Screen only elements */
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Google Sign-in Material Button Styles (Google Identity Services Spec)      */
+/* -------------------------------------------------------------------------- */
+.gsi-material-button {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #747775;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 12px;
+  min-width: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[dir="rtl"] .gsi-material-button .gsi-material-button-icon {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  flex-grow: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  background-color: #f8fafc;
+}
+
+.gsi-material-button:active {
+  background-color: #f1f5f9;
+}
+

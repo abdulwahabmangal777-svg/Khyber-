@@ -1,0 +1,109 @@
+{
+  "users": [
+    {
+      "id": "usr-admin",
+      "username": "admin",
+      "email": "abdulwahabmangal777@gmail.com",
+      "passwordHash": "$2b$10$53pDN4EPYpD6RVrd8MLMCOabvKpRjsMfcE6sf/d2sO0bwRuTJOxxG",
+      "fullName": "Abdul Wahab Mangal (Administrator)",
+      "role": "ADMIN",
+      "department": "Executive Management",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-02T14:54:41.902Z",
+      "updatedAt": "2026-10-02T14:54:41.902Z"
+    }
+  ],
+  "departments": [
+    {
+      "id": "dept-1",
+      "name": "Logistics & Fleet Operations",
+      "nameAr": "العمليات والأسطول",
+      "code": "OPS",
+      "headName": "Abdul Wahab Mangal"
+    },
+    {
+      "id": "dept-2",
+      "name": "Human Resources",
+      "nameAr": "الموارد البشرية",
+      "code": "HR",
+      "headName": "HR Manager"
+    },
+    {
+      "id": "dept-3",
+      "name": "Finance & Accounting",
+      "nameAr": "المالية والمحاسبة",
+      "code": "FIN",
+      "headName": "Finance Manager"
+    }
+  ],
+  "vehicles": [],
+  "workers": [],
+  "documents": [],
+  "maintenance": [],
+  "fuelRecords": [],
+  "expenses": [],
+  "locations": [],
+  "trips": [],
+  "driverExpenses": [],
+  "voiceReports": [],
+  "notifications": [],
+  "chatWebhooks": [],
+  "webhookDispatchLogs": [],
+  "erpWebhooks": [],
+  "iqamaReminderLogs": [],
+  "erpWebhookDispatchLogs": [],
+  "vehicleAssignments": [],
+  "geofences": [],
+  "gpsLogs": [],
+  "geofenceAlerts": [],
+  "reportSchedules": [],
+  "reportExecutionLogs": [],
+  "auditLogs": [
+    {
+      "id": "aud-wipe",
+      "userId": "usr-admin",
+      "userName": "Abdul Wahab Mangal",
+      "userRole": "ADMIN",
+      "action": "DELETE",
+      "entityType": "SYSTEM",
+      "description": "All demo vehicles, workers, trips, expenses, voice reports, and telemetry removed.",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-10-02T14:54:41.902Z"
+    }
+  ],
+  "companyProfile": {
+    "id": "comp-1",
+    "name": "Khyber Logistics services",
+    "nameAr": "خدمات خيبر اللوجستية",
+    "namePs": "د خيبر لوژستیکي خدمتونه",
+    "logo": "/khyber_luxury_logo.jpg",
+    "crNumber": "1010000000",
+    "vatNumber": "310000000000003",
+    "address": "Riyadh, Kingdom of Saudi Arabia",
+    "addressAr": "الرياض، المملكة العربية السعودية",
+    "phone": "+966 11 000 0000",
+    "email": "abdulwahabmangal777@gmail.com",
+    "managerName": "Abdul Wahab Mangal",
+    "managerNameAr": "عبد الوهاب منګل",
+    "currency": "SAR",
+    "timezone": "Asia/Riyadh",
+    "hijriEnabled": true,
+    "createdAt": "2026-10-02T14:54:41.902Z",
+    "updatedAt": "2026-10-02T14:54:41.902Z"
+  },
+  "systemSettings": {
+    "alertDaysThresholds": [
+      60,
+      30,
+      15,
+      7,
+      1
+    ],
+    "autoBackupEnabled": true,
+    "autoBackupFrequency": "DAILY",
+    "smsAlertsEnabled": true,
+    "emailAlertsEnabled": true,
+    "whatsappAlertsEnabled": false,
+    "defaultLanguage": "en"
+  }
+}

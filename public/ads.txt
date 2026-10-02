@@ -1,0 +1,2 @@
+# Google AdSense / Google Marketing Platform ads.txt
+google.com, pub-1036802722878553, DIRECT, f08c47fec0942fa0
